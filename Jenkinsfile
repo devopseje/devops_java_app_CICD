@@ -15,6 +15,7 @@ pipeline {
         stage("Unit Test Using Maven") {
 
            steps{
+            
              script{
                 mvnTest()
              }
