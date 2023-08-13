@@ -4,7 +4,10 @@ pipeline {
         stage("Git Checkout") {
            steps{
             script{
-                git branch: 'main', url: 'https://github.com/devopseje/devops_java_app_CICD.git'
+                gitCheckout(
+                    branch: "main",
+                    url: "https://github.com/devopseje/devops_java_app_CICD.git"
+                )
 
             }
         }
