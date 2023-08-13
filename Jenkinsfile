@@ -48,7 +48,8 @@ pipeline {
            steps{
             
              script{
-               staticCodeAnalysis()
+               def SonarquebeCredential = 'sonarqube' 
+               staticCodeAnalysis(SonarquebeCredential)
              }
                
             }
