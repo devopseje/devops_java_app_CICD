@@ -54,7 +54,20 @@ pipeline {
                
             }
 
-        }            
+        }   
+
+        stage("wait for Quality gate ") {
+        when { expression { params.action == 'create'}}
+           steps{
+            
+             script{
+               def SonarquebeCredential = 'sonarqube' 
+               qualitygateStatus(SonarquebeCredential)
+             }
+               
+            }
+
+        }                  
 
     }
 }
