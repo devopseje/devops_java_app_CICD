@@ -48,7 +48,7 @@ pipeline {
            steps{
             
              script{
-               def SonarquebeCredential = 'sonarqube' 
+               def SonarquebeCredential = 'sonar' 
                staticCodeAnalysis(SonarquebeCredential)
              }
                
@@ -59,11 +59,12 @@ pipeline {
         stage("wait for Quality gate ") {
         when { expression { params.action == 'create'}}
            steps{
-            
+            timeout(time: 5, unit: 'MINUTES'){
              script{
-               def SonarquebeCredential = 'sonarqube' 
+               def SonarquebeCredential = 'sonar' 
                qualityGateStatus(SonarquebeCredential)
              }
+            }
                
             }
 
