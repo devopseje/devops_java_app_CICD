@@ -62,12 +62,25 @@ pipeline {
             
              script{
                def SonarquebeCredential = 'sonarqube' 
-               qualitygateStatus(SonarquebeCredential)
+               qualityGateStatus(SonarquebeCredential)
              }
                
             }
 
-        }                  
+        }   
+
+        stage("Build project") {
+        when { expression { params.action == 'create'}}
+           steps{
+            
+             script{
+              
+               mvnBuild()
+             }
+               
+            }
+
+        }                       
 
     }
 }
